@@ -1,0 +1,169 @@
+
+<div class="container">
+  <div class="row">
+      <div class="col-sm-4"></div>
+      <div class="col-sm-4"><h1 style="text-align: center;">SNIPPET CENTER</h1></div>
+      <div class="col-sm-4"></div>
+      
+    </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <table class="table table-striped table-bordered" id="table_list" width="100%">
+        <thead>
+        <tr>
+        <th>Snippet_name</th>
+        <!-- <th>Last_name</th> -->
+        <!-- <th>Born</th> -->
+        <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each hotdogs}}
+          <tr>
+            <td>{{this.Snippet_name}}</td>
+            <!-- <td>{{this.last}}</td> -->
+            <!-- <td>{{this.born}}</td> -->
+            <td> 
+              <button type="button" onclick="edit_data('{{this.User_id}}')" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">EDIT</button>
+              <button class="btn btn-danger" onclick="delete_data('{{this.User_id}}')">REMOVE</button> 
+              <button class="btn btn-secondary" onclick="view_data('{{this.User_id}}')">View</button> 
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+      </table>
+    </div>
+    <div class="col-lg-6">
+      <form class="create-form">
+            <div class="form-group">
+              <label for="hotdog">Snippet Name:</label>
+              <input type="text" class="form-control" id="Snippet_name" name="name">
+            </div>
+
+            <div class="form-group">
+              <label for="hotdog">Description:</label>
+              <!-- <input type="text" class="form-control" id="Last_name" name="name"> -->
+              <textarea name="" id="Snippet_description" cols="60" rows="10"></textarea>
+            </div>
+
+            <button class="btn btn-success" type="submit">Add</button>
+          </form>
+    </div>
+  </div>
+</div>
+
+
+<script>
+        function delete_data(Master_id) {
+        $.ajax("/delete", {
+          type: "POST",
+          data: {Master_id:Master_id},
+        }).then(
+          function() {
+            // console.log("deleted hotdog", Master_id);
+            location.reload();
+          }
+        );
+      }
+
+      function edit_data(Master_id) {
+        $.ajax("/edit_data", {
+          type: "POST",
+          data: {Master_id:Master_id},
+        }).then(
+          function(data) {
+            var final = JSON.parse(data);
+            console.log("Edit Fetch", final.first);
+
+            $('#Master_id').val(final.User_id);
+            $('#Snippet_name_update').val(final.Snippet_name);
+            $('#Snippet_description_update').val(final.Snippet_description);
+            // $('#Born_update').val(final.born);
+          }
+        );
+      }
+
+      function view_data(Master_id) {
+        $.ajax("/edit_data", {
+          type: "POST",
+          data: {Master_id:Master_id},
+        }).then(
+          function(data) {
+            var final = JSON.parse(data);
+            console.log("Edit Fetch", final.first);
+
+            // $('#Master_id').val(final.User_id);
+
+            $('.heading_data').text(final.Snippet_name);
+            $('.view_Data').text(final.Snippet_description);
+            // $('#Snippet_description_update').val(final.Snippet_description);
+            // $('#Born_update').val(final.born);
+          }
+        );
+      }
+
+</script>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+       <form class="update-form">
+      <div class="modal-body">
+       
+            <div class="form-group">
+              <label for="hotdog">Snippet Name:</label>
+              <input type="hidden" class="form-control" id="Master_id" name="name">
+              <input type="text" class="form-control" id="Snippet_name_update" name="name">
+            </div>
+
+            <div class="form-group">
+              <label for="hotdog">Snippet Description:</label>
+              <textarea name="" id="Snippet_description_update" cols="50" rows="10"></textarea>
+
+            </div>
+
+          <!-- <button class="btn btn-success" type="submit">Update hotdog</button> -->
+
+          
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" >Save changes</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  $('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+<br>
+
+
+<div>
+  <!-- <p class="view_Data"></p> -->
+  <h3 class="heading_data"></h3>
+  <pre><code class="language-html view_Data"></code></pre>
+</div>
