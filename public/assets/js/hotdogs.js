@@ -1,6 +1,8 @@
 
 $(document).ready(function() {
-    $('#table_list').DataTable();
+    $('#table_list').DataTable({
+          pageLength : 5,
+    });
 } );
 
 // Make sure we wait to attach our handlers until the DOM is fully loaded.
@@ -40,8 +42,12 @@ $(function() {
       data: Data_collect
     }).then(
       function() {
-        // console.log("created new hotdog");
-        location.reload();
+
+        swal("Data Inserted", "Successfully", "success")
+        .then((value) => {
+          location.reload();
+        });
+        
       }
     );
   });
