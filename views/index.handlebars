@@ -2,7 +2,7 @@
 <div class="container">
   <div class="row">
       <div class="col-sm-4"></div>
-      <div class="col-sm-4"><h1 style="text-align: center;">SD SNIPPET CENTER</h1></div>
+      <div class="col-sm-4"><h1 style="text-align: center;">SNIPPET CENTER</h1></div>
       <div class="col-sm-4"></div>
       
     </div>
@@ -90,12 +90,17 @@
         }).then(
           function(data) {
             var final = JSON.parse(data);
-            console.log("Edit Fetch", final.first);
+            // console.log("Edit Fetch", final.first);
 
             // $('#Master_id').val(final.User_id);
 
+            // Prism.highlightAll();
+
             $('.heading_data').text(final.Snippet_name);
             $('.view_Data').text(final.Snippet_description);
+
+            var block = document.getElementById('code_data');
+            Prism.highlightElement(block);
             // $('#Snippet_description_update').val(final.Snippet_description);
             // $('#Born_update').val(final.born);
           }
@@ -165,5 +170,9 @@
 <div>
   <!-- <p class="view_Data"></p> -->
   <h3 class="heading_data"></h3>
-  <pre><code class="language-html view_Data"></code></pre>
+  <pre><code id="code_data" class="language-cpp view_Data"></code></pre>
+
+
+
+
 </div>
