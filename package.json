@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
+  "homepage":"https://satheeshdragon.github.io/node_mvc_snippet/",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
@@ -13,7 +14,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "predeploy":"npm run build",
+    "deploy":"gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -24,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/fvaldez421/hotDogs/issues"
   },
-  "homepage": "https://github.com/fvaldez421/hotDogs#readme"
+  "homepage": "https://github.com/fvaldez421/hotDogs#readme",
+  "devDependencies": {
+    "gh-pages": "^2.1.1"
+  }
 }
