@@ -1,20 +1,24 @@
-
-<div class="container">
+<br>
+<div class="container-fluid">
   <div class="row">
       <div class="col-sm-4"></div>
-      <div class="col-sm-4"><h1 style="text-align: center;">SNIPPET CENTER</h1></div>
+      <div class="col-sm-4">
+        <h1 style="text-align: center;">SNIPPET CENTER</h1>
+      </div>
       <div class="col-sm-4"></div>
       
     </div>
+<br>
+
   <div class="row">
     <div class="col-lg-6">
       <table class="table table-striped table-bordered" id="table_list" width="100%">
         <thead>
         <tr>
-        <th>Snippet_name</th>
+        <th class="text-center">Snippet_name</th>
         <!-- <th>Last_name</th> -->
         <!-- <th>Born</th> -->
-        <th>Action</th>
+        <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -23,7 +27,7 @@
             <td>{{this.Snippet_name}}</td>
             <!-- <td>{{this.last}}</td> -->
             <!-- <td>{{this.born}}</td> -->
-            <td> 
+            <td class="text-center"> 
               <button type="button" onclick="edit_data('{{this.User_id}}')" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">EDIT</button>
               <button class="btn btn-danger" onclick="delete_data('{{this.User_id}}')">REMOVE</button> 
               <button class="btn btn-secondary" onclick="view_data('{{this.User_id}}')">View</button> 
@@ -37,13 +41,13 @@
       <form class="create-form">
             <div class="form-group">
               <label for="hotdog">Snippet Name:</label>
-              <input type="text" class="form-control" id="Snippet_name" name="name">
+              <input type="text" class="form-control" id="Snippet_name" name="name" required="">
             </div>
 
             <div class="form-group">
               <label for="hotdog">Description:</label>
               <!-- <input type="text" class="form-control" id="Last_name" name="name"> -->
-              <textarea name="" id="Snippet_description" cols="60" rows="10"></textarea>
+              <textarea class="form-control" id="Snippet_description" cols="60" rows="10" required=""></textarea>
             </div>
 
             <button class="btn btn-success" type="submit">Add</button>
@@ -55,15 +59,33 @@
 
 <script>
         function delete_data(Master_id) {
-        $.ajax("/delete", {
-          type: "POST",
-          data: {Master_id:Master_id},
-        }).then(
-          function() {
-            // console.log("deleted hotdog", Master_id);
-            location.reload();
-          }
-        );
+
+          swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this Data!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              $.ajax("/delete", {
+                type: "POST",
+                data: {Master_id:Master_id},
+              }).then(
+                function() {
+                  // console.log("deleted hotdog", Master_id);
+                  location.reload();
+                }
+              );
+              swal("Poof! Your Data has been deleted!", {
+                icon: "success",
+              });
+            } else {
+              // swal("Your imaginary file is safe!");
+            }
+          });
+        
       }
 
       function edit_data(Master_id) {
@@ -167,12 +189,12 @@
 <br>
 
 
-<div>
-  <!-- <p class="view_Data"></p> -->
-  <h3 class="heading_data"></h3>
-  <pre><code id="code_data" class="language-cpp view_Data"></code></pre>
-
-
-
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-lg-12">
+      <h3 class="heading_data"></h3>
+      <pre><code id="code_data" class="language-cpp view_Data"></code></pre>
+      </div>
+    </div>
+  
 </div>
