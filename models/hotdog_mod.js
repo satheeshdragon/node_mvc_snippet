@@ -22,29 +22,29 @@ var snippet = {
 
 
    let user_data = [];
+   // let user_id= [];
   
    let citiesRef = db.collection('snippet');
    let allCities = citiesRef.get()
   .then(snapshot => {
     snapshot.forEach(doc => {
       // temp_data
-      var data = {
-        "id" : doc.id,
+      var my_data =  doc.data();
+      var datas = {
+        "Master_id" : doc.id,
+        "Snippet_name" : my_data.Snippet_name,
+        "Snippet_description" : my_data.Snippet_description,
+        "User_id" : my_data.User_id,
       };
-      // user_data.push(doc.id);  // Id With_Data
-      user_data.push(doc.data());  // Id With_Data
-      // console.log(doc.id, '=>', doc.data());
-      // console.log(doc.id, '=>', doc.data());
-    });
 
+      user_data.push(datas);  // Id With_Data
+
+    });
     cb(user_data);   
   })
   .catch(err => {
     console.log('Error getting documents', err);
   });
-
-  // console.log(user_data);
-
 
   },
   // The variables cols and vals are arrays.
@@ -61,7 +61,7 @@ var snippet = {
         Snippet_description: Snippet_description,
       };
 
-  let setDoc = db.collection('snippet').doc(count.toString()).set(data);
+  let setDoc = db.collection('snippet').doc().set(data);
 
 
   },
