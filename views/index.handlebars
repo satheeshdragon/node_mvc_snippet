@@ -99,7 +99,7 @@
 
             $('#Master_id').val(Master_id);
             $('#Snippet_name_update').val(final.Snippet_name);
-            $('#Snippet_description_update').val(final.Snippet_description);
+            $('.Snippet_description_update').val(final.Snippet_description);
             // $('#Born_update').val(final.born);
           }
         );
@@ -123,7 +123,7 @@
 
             var block = document.getElementById('code_data');
             Prism.highlightElement(block);
-            // $('#Snippet_description_update').val(final.Snippet_description);
+            // $('.Snippet_description_update').val(final.Snippet_description);
             // $('#Born_update').val(final.born);
           }
         );
@@ -159,12 +159,11 @@
               <label for="hotdog">Snippet Name:</label>
               <input type="hidden" class="form-control" id="Master_id" name="name">
               <input type="text" class="form-control" id="Snippet_name_update" name="name">
-            </div>
-
+            </div>            
+            
             <div class="form-group">
-              <label for="hotdog">Snippet Description:</label>
-              <textarea name="" id="Snippet_description_update" cols="50" rows="10"></textarea>
-
+              <label for="exampleFormControlTextarea1">Snippet Description:</label>
+              <textarea class="form-control" class="Snippet_description_update" id="exampleFormControlTextarea1" rows="3"></textarea>
             </div>
 
           <!-- <button class="btn btn-success" type="submit">Update hotdog</button> -->
