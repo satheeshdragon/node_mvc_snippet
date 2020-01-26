@@ -3,11 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
-  "homepage":"https://satheeshdragon.github.io/node_mvc_snippet/",
+  "homepage": "https://github.com/fvaldez421/hotDogs#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.17.0",
     "firebase-admin": "^8.7.0",
     "method-override": "^2.3.10",
     "mysql": "^2.15.0"
@@ -15,8 +16,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "predeploy":"npm run build",
-    "deploy":"gh-pages -d build"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "repository": {
     "type": "git",
@@ -27,7 +28,6 @@
   "bugs": {
     "url": "https://github.com/fvaldez421/hotDogs/issues"
   },
-  "homepage": "https://github.com/fvaldez421/hotDogs#readme",
   "devDependencies": {
     "gh-pages": "^2.1.1"
   }
