@@ -11,6 +11,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.engine("handlebars", exphbs({ defaultLayout: "main", extname: ".handlebars"}));
 app.set("view engine", "handlebars");
 
+var session = require('express-session');
+// Use the session middleware
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 500000 }}))
+ 
+
 app.use("/", routes);
 
 app.listen(port, function() {
