@@ -58,7 +58,7 @@ $(function() {
     var Data_collect = {
       Master_id : $("#Master_id").val().trim(),
       Snippet_name_update : $("#Snippet_name_update").val().trim(),
-      Snippet_description_update : $('.Snippet_description_update').text().trim(),
+      Snippet_description_update : $('.Snippet_description_update').val().trim(),
       // Born : $("#Born_update").val().trim(),
     };
 
